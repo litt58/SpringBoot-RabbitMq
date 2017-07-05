@@ -26,7 +26,6 @@ import static org.apache.coyote.http11.Constants.a;
  */
 @RestController
 @RequestMapping(value = "/message")
-@EnableAsync
 public class MessageController {
     @Autowired
     private AmqpTemplate amqpTemplate;
