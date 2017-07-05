@@ -1,12 +1,14 @@
 package com.jzli.controller;
 
 import com.rabbitmq.client.Channel;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.TimeUnit;
@@ -27,12 +29,12 @@ public class MessageController {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    @RequestMapping(path="/hello")
+    @RequestMapping(path="/hello", method = RequestMethod.GET)
     public Object hello(){
         return "hello";
     }
 
-    @RequestMapping(path="/send")
+    @RequestMapping(path="/send", method = RequestMethod.GET)
     public Object send(){
         for(int i=1;i<101;i++){
             amqpTemplate.convertAndSend("hello",i+"");
