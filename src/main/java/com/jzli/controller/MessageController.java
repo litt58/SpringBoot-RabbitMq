@@ -6,13 +6,10 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.TimeUnit;
-
-import static org.apache.coyote.http11.Constants.a;
 
 /**
  * =======================================================
@@ -21,7 +18,7 @@ import static org.apache.coyote.http11.Constants.a;
  * @Date ：2017/7/5
  * @Author ：李金钊
  * @Version ：0.0.1
- * @Description ：
+ * @Description ：提供消息的发送接口和异步处理消息的监听方法
  * ========================================================
  */
 @RestController
