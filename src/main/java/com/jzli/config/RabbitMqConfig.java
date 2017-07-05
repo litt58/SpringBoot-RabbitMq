@@ -23,7 +23,7 @@ import java.util.Map;
 @Configuration
 public class RabbitMqConfig {
     @Bean
-    public Queue helloQueue() {
-        return new Queue("hello");
+    public Queue queue() {
+        return new Queue("mail");
     }
 }

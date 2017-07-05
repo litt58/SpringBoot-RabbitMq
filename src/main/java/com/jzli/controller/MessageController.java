@@ -1,17 +1,18 @@
 package com.jzli.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.jzli.bean.MailMessage;
+import com.jzli.service.Service;
 import com.rabbitmq.client.Channel;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * =======================================================
@@ -27,26 +28,23 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping(value = "/message")
 public class MessageController {
     @Autowired
-    private AmqpTemplate amqpTemplate;
+    private Service service;
 
-    @RequestMapping(path="/hello", method = RequestMethod.GET)
-    public Object hello(){
+    @RequestMapping(path = "/hello", method = RequestMethod.GET)
+    public Object hello() {
         return "hello";
     }
 
-    @RequestMapping(path="/send", method = RequestMethod.GET)
-    public Object send(){
-        for(int i=1;i<101;i++){
-            amqpTemplate.convertAndSend("hello",i+"");
-        }
+    @RequestMapping(path = "/test", method = RequestMethod.GET)
+    public Object test() {
+        service.test();
         return "true";
     }
 
-
-    @RabbitListener(queues = {"hello"})
-    @Async
-    public void receive(Message message, Channel channel) throws Exception {
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println(Thread.currentThread().getName()+"\t"+new String(message.getBody()));
+    @RequestMapping(path = "/send", method = RequestMethod.POST)
+    @ApiOperation(value = "发送邮件", httpMethod = "POST", notes = "发送邮件")
+    public Object send(@RequestBody MailMessage mm) {
+       service.send(mm);
+        return "true";
     }
 }
