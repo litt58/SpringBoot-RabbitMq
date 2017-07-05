@@ -1,14 +1,9 @@
 package com.jzli.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.jzli.bean.MailMessage;
 import com.jzli.service.Service;
-import com.rabbitmq.client.Channel;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

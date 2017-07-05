@@ -1,9 +1,6 @@
 package com.jzli.bean;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * =======================================================
