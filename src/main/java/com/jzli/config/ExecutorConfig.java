@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @Date ：2017/7/5
  * @Author ：李金钊
  * @Version ：0.0.1
- * @Description ：线程池配置
+ * @Description ：继承AsyncConfigurer，修改Async注解使用的线程池配置
  * ========================================================
  */
 @Configuration
