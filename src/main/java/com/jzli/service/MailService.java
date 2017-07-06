@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
  * ========================================================
  */
 @Component
-public class Service {
+public class MailService {
     @Autowired
     private JavaMailSender mailSender;
     @Autowired
@@ -41,7 +41,7 @@ public class Service {
 
     @RabbitListener(queues = {"mail"})
     @Async
-    public void receive(Message message, Channel channel) throws Exception {
+    private void receive(Message message, Channel channel) throws Exception {
         String s = new String(message.getBody(), "UTF-8");
         MailMessage mailMessage = JSONObject.parseObject(s, MailMessage.class);
         System.out.println(Thread.currentThread().getName() + "\t" + mailMessage);

@@ -1,7 +1,7 @@
 package com.jzli.controller;
 
 import com.jzli.bean.MailMessage;
-import com.jzli.service.Service;
+import com.jzli.service.MailService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/message")
 public class MessageController {
     @Autowired
-    private Service service;
+    private MailService mailService;
 
     @RequestMapping(path = "/hello", method = RequestMethod.GET)
     public Object hello() {
@@ -32,14 +32,14 @@ public class MessageController {
 
     @RequestMapping(path = "/test", method = RequestMethod.GET)
     public Object test() {
-        service.test();
+        mailService.test();
         return "true";
     }
 
     @RequestMapping(path = "/send", method = RequestMethod.POST)
     @ApiOperation(value = "发送邮件", httpMethod = "POST", notes = "发送邮件")
     public Object send(@RequestBody MailMessage mm) {
-       service.send(mm);
+        mailService.send(mm);
         return "true";
     }
 }
